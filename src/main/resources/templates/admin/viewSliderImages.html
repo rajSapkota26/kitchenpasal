@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="admin/adminBase::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 ">
+					<h1>All Slider item</h1>
+				</div>
+				<div class="col-md-2">
+					<button href="#" class="btn btn-light mt-1 mybg"
+						data-bs-toggle="modal" data-bs-target="#addModal">Add New
+					</button>
+				</div>
+			</div>
+			
+			<div class="modal fade" id="addModal" tabindex="-1"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form class="p-3" 
+							th:action="@{/myadmin/saveSliderImage}" method="post">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="floatingInput"
+								
+									name="name"	placeholder="name"> <label
+									for="floatingInput">Name</label>
+							</div>
+							
+
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-bs-dismiss="modal">Close</button>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+</body>
+</html>

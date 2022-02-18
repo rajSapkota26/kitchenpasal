@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="admin/adminBase::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container-fluid bg-light">
+			<div class="row">
+				<div class="col-md-10">
+					<h3>
+						sub category <span class="text-success" th:text="${subcatId.name}"></span>
+					</h3>
+				</div>
+				<div class="col-md-2 text-end">
+					<a th:href="@{/myadmin/addProduct/{subId} (subId=${subcatId.id})}"
+						class="btn btn-light mt-1 mybg">Add New Product</a>
+				</div>
+			</div>
+			<div>
+				<div class="bg-white p-1 border border-dark mb-1"
+					th:each="p: ${allProduct}">
+					<div class="row">
+						<div class="col-md-2">
+							<div class="text-center">
+								<img th:src="@{'/img/' +${p.imageFiles[0].name}}"
+									class="card-img-top img " width="100" height="150"
+									alt="productImage">
+							</div>
+							<div class="row mt-2">
+								<div class="col-md-3 col-sm-6" th:each="i:${p.imageFiles}">
+									<div class="text-center">
+										<img th:src="@{'/img/' +${i.name}}" class="card-img-top img "
+											width="35" height="35" alt="productImage">
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="col-md-10">
+							<div class="row">
+								<div class="col-md-8">
+									<h3 th:text="${p.name}"></h3>
+								</div>
+								<div class="col-md-4 text-end">
+									<p>
+										<a
+											th:href="@{/myadmin/editProduct/{id}/{subcatId} (id=${p.id}, subcatId=${subcatId.id})}"
+											class="btn btn-light mt-1 mybg">Update</a>
+										<button
+											th:attr="onclick=|deletProduct('${subcatId.id}','${p.id}')|"
+											class="btn btn-light mt-1 mybg">Delete</button>
+									</p>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-2">
+									<p class="text-danger">
+										Brand: <span class="text-dark" th:text="${p.brand}">
+											Youwe</span>
+									</p>
+								</div>
+								<div class="col-md-2">
+									<p>
+										Mrp Price: <span class="text-dark" th:text="${p.mrpPrice}">2500</span>
+									</p>
+								</div>
+								<div class="col-md-2">
+									<p>
+										Original Price: <span class="text-dark" th:text="${p.price}">2200</span>
+									</p>
+								</div>
+
+								<div class="col-md-2">
+									<p>
+										unit: <span class="text-dark" th:text="${p.unit}">1 Pc</span>
+									</p>
+								</div>
+								<div class="col-md-2">
+									<p>
+										SKU: <span class="text-dark" th:text="${p.sku}">
+											YW-GT-002A</span>
+									</p>
+								</div>
+								<div class="col-md-2">
+									<p>
+										Size: <span class="text-dark" th:text="${p.pPize}"> 2 L</span>
+									</p>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-2">
+									<p>
+										color: <span class="text-dark" th:text="${p.color}">
+											Red,Blue,Pink</span>
+									</p>
+								</div>
+								<div class="col-md-2">
+									<p>
+										isAvilable: <span class="text-dark" th:text="${p.isAvilable}">
+											yes</span>
+									</p>
+								</div>
+
+								<div class="col-md-2">
+									<p>
+										isFeature: <span class="text-dark" th:text="${p.isfeature}">
+											No</span>
+									</p>
+								</div>
+								<div class="col-md-2">
+									<p>
+										isPopular: <span class="text-dark" th:text="${p.ispopular}">ispopular</span>
+									</p>
+								</div>
+
+								<div class="col-md-2">
+									<p>
+										isOffer: <span class="text-dark" th:text="${p.isoffer}">
+											yes</span>
+									</p>
+								</div>
+							</div>
+
+							<p>
+								description: <span th:text="${p.description}"> 1 Pc 2
+									Indian style burner Auto ignition with Japanese Piezo Tempered
+									glass cookup Heavy caste iron mixing tube 100% brass burners
+									Low gas consumption</span>
+							</p>
+							<p>
+								specification: <span th:text="${p.specification}"> 1 Pc 2
+									Indian style burner Auto ignition with Japanese Piezo Tempered
+									glass cookup Heavy caste iron mixing tube 100% brass burners
+									Low gas consumption</span>
+							</p>
+							<p>
+								services: <span th:text="${p.services}"> 1 Pc 2 Indian
+									style burner Auto ignition with Japanese Piezo Tempered glass
+									cookup Heavy caste iron mixing tube 100% brass burners Low gas
+									consumption</span>
+							</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+
+	</section>
+</body>
+</html>

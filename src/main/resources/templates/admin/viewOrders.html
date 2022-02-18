@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="admin/adminBase::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row p-4">
+				<div class="col-md-10 ">
+					<h1>All Orders</h1>
+				</div>
+				<div class="col-md-2">
+					<div class="dropdown">
+						<button class="btn  dropdown-toggle" type="button"
+							id="dropdownMenuButton1" data-bs-toggle="dropdown"
+							aria-expanded="false">Filter order</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<li><button class="dropdown-item"
+									th:attr="onclick=|sortItemHighToLow()|">Pending</button></li>
+							<li><button class="dropdown-item"
+									th:attr="onclick=|sortItemLowToHigh()|">Process</button></li>
+							<li><button class="dropdown-item"
+									th:attr="onclick=|sortItemAtoZ()|">On the Way</button></li>
+							<li><button class="dropdown-item"
+									th:attr="onclick=|sortItemZtoA()|">Delivered</button></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class=" text-center ">
+				<table class="table table-bordered border-dark">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Item</th>
+							<th scope="col">Product</th>
+							<th scope="col">Quantity</th>
+							<th scope="col">Total</th>
+							<th scope="col">Status</th>
+							<th scope="col" colspan="2">Actions</th>
+
+						</tr>
+					<tbody>
+						<tr th:each="o:${orders}">
+							<td>
+								<h4 th:text="${#dates.format(o.submitDate, 'yyyy-MMM-dd')}">2020-3-15</h4>
+							</td>
+							<th scope="row"><img th:src="@{/img/frypin.jpg}" width="60"
+								height="75" class="card-img-top img " alt="productImage">
+							</th>
+							<td><h4 th:text="${o.product.name}">Fry pin</h4></td>
+							<td>
+								<h4 th:text="${o.quantity}">4</h4>
+							</td>
+							<td>
+								<h4 th:text="${o.payableAmount}">4000</h4>
+							</td>
+							<td>
+								<h4 th:text="${o.status}">Pending</h4>
+							</td>
+
+							<td>
+
+								<button>
+									<i class="bi bi-trash-fill"></i>
+								</button>
+								<a th:href="@{'/myadmin/singleOrder/'+${o.id}}"
+								class="btn btn-dark  ">View</a>
+							</td>
+						</tr>
+					</tbody>
+
+					
+				</table>
+			</div>
+		</div>
+
+
+
+
+
+	</section>
+</body>
+</html>

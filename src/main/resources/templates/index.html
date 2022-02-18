@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${title}">Document</title>
+</head>
+<body>
+	<section class="jumbotron overflow-hidden ">
+		<div id="carouselExampleInterval" class="carousel slide"
+			data-bs-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item active" data-bs-interval="5000">
+					<img src="/img/img_one.jpg" class=" w-100" alt="..."
+						style="height: 350px;">
+				</div>
+				<div class="carousel-item" data-bs-interval="5000">
+					<img src="/img/img_two.jpg" class=" w-100" alt="..."
+						style="height: 350px;">
+				</div>
+				<div class="carousel-item" data-bs-interval="5000">
+					<img src="/img/img_one.jpg" class="w-100" alt="..."
+						style="height: 350px;">
+				</div>
+				<div class="carousel-item" data-bs-interval="5000">
+					<img src="/img/img_two.jpg" class=" w-100" alt="..."
+						style="height: 350px;">
+				</div>
+			</div>
+
+		</div>
+		<div class="container">
+			<div class="row mt-4">
+				<div class="col-md-12 text-center bg-dark">
+					<h1 class="text-white ">Flash Sell</h1>
+					<div class="text-center"></div>
+					<hr class="text-white mx-auto w-25" />
+				</div>
+			</div>
+			
+			<div class="row ">
+				<div class="col-md-3 mt-2 bg-white mb-3" th:each="p: ${op}">
+					<div class="card text-center" >
+						<div class="imagdiscount">
+							<a th:href="@{/productDetails/{id}(id=${p.id})}"> <img
+								th:src="@{'/img/' +${p.imageFiles[0].name}}"
+								class="card-img-top img " alt="productImage"></a>
+							<p th:if="${p.mrpPrice>0}"
+								class="text-start text-danger fw-bold top-left border border-danger p-2"
+								>
+								Rs : <span th:text="${p.mrpPrice}-${p.price}"></span> Off</p>
+
+						</div>
+						<div class="card-body">
+							<h5 class="card-title" th:text="${p.name}">Diamond Induction
+								Based Pressure Cooker- 2 L</h5>
+							<h6 class="card-text  fw-bold mt-1">
+								Rs: <span class="text-success" th:text="${p.price}"> 3500</span>
+								<span class="text-decoration-line-through ms-2 text-danger"
+									th:if="${p.mrpPrice>0}" th:text="${'Rs: '+p.mrpPrice}">3500</span>
+							</h6>
+							<a th:href="@{/user/placeOrder/{id}(id=${p.id})}" class="mybtn mb-3">Buy Now</a> 
+							<button th:attr="onclick=|addtoCart('${p.id}')|"
+								 class="mybtn"> Add to Cart</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 text-center text-white offset-md-3">
+					<a class="btn-one w-50" th:href="@{/categorywiseproduct/0/product/offer}">View all</a>
+				</div>
+			</div>
+
+		</div>
+		<div class="container mt-2">
+			<div class="row mt-4">
+				<div class="col-md-12 text-center bg-dark">
+					<h1 class="text-white ">Feature Product</h1>
+					<div class="text-center"></div>
+					<hr class="text-white mx-auto w-25" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 mt-2 bg-white mb-3" th:each="p: ${fp}">
+					<div class="card text-center" >
+						<div class="imagdiscount">
+							<a th:href="@{/productDetails/{id}(id=${p.id})}"> <img
+								th:src="@{'/img/' +${p.imageFiles[0].name}}"
+								class="card-img-top img " alt="productImage"></a>
+							<p th:if="${p.mrpPrice>0}"
+								class="text-start text-danger fw-bold top-left border border-danger p-2"
+								>
+								Rs : <span th:text="${p.mrpPrice}-${p.price}"></span> Off</p>
+
+						</div>
+						<div class="card-body">
+							<h5 class="card-title" th:text="${p.name}">Diamond Induction
+								Based Pressure Cooker- 2 L</h5>
+							<h6 class="card-text  fw-bold mt-1">
+								Rs: <span class="text-success" th:text="${p.price}"> 3500</span>
+								<span class="text-decoration-line-through ms-2 text-danger"
+									th:if="${p.mrpPrice>0}" th:text="${'Rs: '+p.mrpPrice}">3500</span>
+							</h6>
+							<a th:href="@{/user/placeOrder/{id}(id=${p.id})}" class="mybtn mb-3">Buy Now</a> 
+							<button th:attr="onclick=|addtoCart('${p.id}')|"
+								 class="mybtn"> Add to Cart</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 text-center text-white offset-md-3">
+				<a class="btn-one w-50" th:href="@{/categorywiseproduct/0/product/feature}">View all</a>
+			</div>
+		</div>
+		<div class="container mt-2">
+			<div class="row mt-4">
+				<div class="col-md-12 text-center bg-dark">
+					<h1 class="text-white ">Popular Product</h1>
+					<div class="text-center"></div>
+					<hr class="text-white mx-auto w-25" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 mt-2 bg-white mb-3" th:each="p: ${pp}">
+					<div class="card text-center" >
+						<div class="imagdiscount">
+							<a th:href="@{/productDetails/{id}(id=${p.id})}"> <img
+								th:src="@{'/img/' +${p.imageFiles[0].name}}"
+								class="card-img-top img " alt="productImage"></a>
+							<p th:if="${p.mrpPrice>0}"
+								class="text-start text-danger fw-bold top-left border border-danger p-2"
+								>
+								Rs : <span th:text="${p.mrpPrice}-${p.price}"></span> Off</p>
+
+						</div>
+						<div class="card-body">
+							<h5 class="card-title" th:text="${p.name}">Diamond Induction
+								Based Pressure Cooker- 2 L</h5>
+							<h6 class="card-text  fw-bold mt-1">
+								Rs: <span class="text-success" th:text="${p.price}"> 3500</span>
+								<span class="text-decoration-line-through ms-2 text-danger"
+									th:if="${p.mrpPrice>0}" th:text="${'Rs: '+p.mrpPrice}">3500</span>
+							</h6>
+							<a th:href="@{/user/placeOrder/{id}(id=${p.id})}" class="mybtn mb-3">Buy Now</a> 
+							<button th:attr="onclick=|addtoCart('${p.id}')|"
+								 class="mybtn"> Add to Cart</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 text-center text-white offset-md-3">
+				<a class="btn-one w-50" th:href="@{/categorywiseproduct/0/product/popular}">View all</a>
+			</div>
+			<div class="container">
+				<div class="row mt-4">
+				<div class="col-md-12 text-center bg-dark">
+					<h1 class="text-white ">Our Brands</h1>
+					<div class="text-center"></div>
+					<hr class="text-white mx-auto w-25" />
+				</div>
+			</div>
+
+				<div class="text-center mb-4">
+					<img th:src="@{/img/our-brands.jpg}" class=" img "
+						alt="productImage">
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+</body>
+</html>

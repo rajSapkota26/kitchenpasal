@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${title}">Document</title>
+</head>
+<body>
+	<section class="jumbotron overflow-hidden">
+		<div class="p-4">
+			<div class="row mb-4">
+				<div class="col-md-2  p-2 border border-dark">
+					<div class="mb-3">
+						<a class="mybtn w-100" th:href="@{/user/userdashboard}">Dashboard</a>
+					</div>
+					<div class="mb-3">
+						<a class="mybtn w-100" th:href="@{/user/mycart}">View Carts</a>
+					</div>
+					<div class="mb-3">
+						<a class="mybtn w-100" th:href="@{/user/myorder}">View Orders</a>
+					</div>
+					<div class="mb-3 ">
+						<a class="mybtn w-100" th:href="@{/logout}">Logout</a>
+					</div>
+				</div>
+
+				<div class="col-md-10 ">
+					<div class="row ">
+						<h1 class="text-center">Account Information</h1>
+						<div class="col-md-6 offset-md-3">
+							<p>
+								Name : <span th:text="${user.fullName}">Sp abinash</span>
+							</p>
+							<p>
+								Phone : <span th:text="${user.phoneNumber}">9846440376</span>
+							</p>
+							<p>
+								Address: <span th:text="${user.address}">Ktm nepal</span>
+							</p>
+							<p>
+								Email: <span th:text="${user.email}">Spabinash2626@gmail.com</span>
+							</p>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+
+	</section>
+
+</body>
+</html>

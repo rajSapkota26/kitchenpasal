@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="admin/adminBase::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container-fluid bg-light">
+			<div class="container border border-dark bg-white">
+				<h3 class="text-center mt-3">Add new Product On SubCategory : <span class="text-success" th:text="${subcatId.name}"></span></h3>
+				<form class="p-3" method="post" th:object="${product}"th:action="@{/myadmin/saveProduct}"enctype="multipart/form-data">
+					<div class="row">
+						<div class="col-md-4">
+						<input type="text" th:value="${subcatId.id}"hidden="true"name="subcatId" > 
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="floatingInput"
+									name="name" placeholder="name"> <label
+									for="floatingInput"> product Name</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="floatingInput"
+									name="mrpPrice" placeholder="name"> <label
+									for="floatingInput">MRP price</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="floatingInput"
+									name="price" placeholder="name"> <label
+									for="floatingInput">Original Price</label>
+							</div>
+						</div>
+					</div>
+					<div class="row ">
+						<div class="col-md-4">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="floatingInput"
+									name="sku" placeholder="name"> <label
+									for="floatingInput"> product SKU</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="floatingInput"
+									name="brand" placeholder="name"> <label
+									for="floatingInput">Brand</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="floatingInput"
+									name="pPize" placeholder="name"> <label
+									for="floatingInput">Size</label>
+							</div>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-md-4">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="floatingInput"
+									name="unit" placeholder="name"> <label
+									for="floatingInput">Unit</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-floating">
+								<textarea class="form-control" name="specification"
+									placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+								<label for="floatingTextarea">Specification</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-floating">
+								<textarea class="form-control" name="services"
+									placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+								<label for="floatingTextarea">Services</label>
+							</div>
+						</div>
+					</div>
+					<div class="row ">
+						<div class="col-md-4">
+							<div class="form-floating mb-3">
+								<textarea class="form-control" name="description"
+									placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+								<label for="floatingTextarea">Description</label>
+							</div>
+						</div>
+						<div class="col-md-4 ">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="floatingInput"
+								placeholder="Red, Green,Black,Grey,Blue,white"	name="color"> <label for="floatingInput">Available
+									Colors </label>
+							</div>
+
+						</div>
+						<div class="col-md-4 mb-3">
+							<span class="me-2">Fature product:</span>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="isfeature"
+									value="true" id="filter-none"> <label
+									class="form-check-label" for="inlineRadio1">yes</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="isfeature"
+									value="false" id="filter-1"> <label
+									class="form-check-label" for="inlineRadio2">NO</label>
+							</div>
+						</div>
+					</div>
+					<div class="row ">
+						<div class="col-md-4 mb-3">
+							<span class="me-2">Is Available:</span>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="isAvilable"
+									value="true" id="filter-none"> <label
+									class="form-check-label" for="inlineRadio1">yes</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="isAvilable"
+									value="false" id="filter-1"> <label
+									class="form-check-label" for="inlineRadio2">NO</label>
+							</div>
+						</div>
+						<div class="col-md-4 mb-3">
+							<span class="me-2">Popular product:</span>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="ispopular"
+									value="true" id="filter-none"> <label
+									class="form-check-label" for="inlineRadio1">yes</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="ispopular"
+									value="false" id="filter-1"> <label
+									class="form-check-label" for="inlineRadio2">NO</label>
+							</div>
+						</div>
+						<div class="col-md-4 mb-3">
+							<span class="me-2">Offer product:</span>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="isoffer"
+									value="true" id="filter-none"> <label
+									class="form-check-label" for="inlineRadio1">yes</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="isoffer"
+									value="false" id="filter-1"> <label
+									class="form-check-label" for="inlineRadio2">NO</label>
+							</div>
+						</div>
+					</div>
+					<div class="row ">
+						<div class="col-md-4 mb-3">
+							<div class="form-group">
+								<label for="file">Select Files</label> <br /> <input
+									name="pictures" id="file-input" type="file" multiple
+									class="form-control-file">
+							</div>
+						</div>
+					</div>
+					<div class="row" id="preview"></div>
+					<button type="submit" class="btn btn-light mybg">Submit</button>
+				</form>
+			</div>
+
+		</div>
+	</section>
+</body>
+</html>

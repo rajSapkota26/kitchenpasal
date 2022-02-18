@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="admin/adminBase::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row mt-4">
+				<div class="col-md-6 offset-md-3 mt-4">
+					<h1>Edit Category</h1>
+
+					<div class="bg-white border border-dark mt-4">
+
+						<form class="p-3 mt-4" th:object="${cat}"
+							th:action="@{/myadmin/updateCategory}" method="post">
+							<div class="mb-3">
+								<p>
+									Id : <span th:text="${cat.id}"></span>
+								</p>
+							</div>
+							<div class="mb-3">
+								<label for="exampleInputEmail1" class="form-label">Name</label>
+								<input type="text" class="form-control" id="exampleInputEmail1"
+									hidden="true" th:value="${cat.id}" name="id"
+									aria-describedby="emailHelp">
+
+							</div>
+							<div class="mb-3">
+								<div class="form-floating mb-3">
+									<input type="text" class="form-control" id="floatingInput"
+										th:value="${cat.name}" name="name" placeholder="name">
+									<label for="floatingInput">Name</label>
+								</div>
+
+
+							</div>
+
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</section>
+</body>
+</html>

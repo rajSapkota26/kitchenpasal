@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${title}">Document</title>
+</head>
+<body>
+	<section class="jumbotron overflow-hidden">
+		<div class="container my-4 ">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+
+					<form class="border border-dark p-3" th:action="@{/dologin}"
+						method="post">
+						<h3 class="mb-3">Login Account</h3>
+						<div class="form-floating mb-3">
+							<input type="text" class="form-control" id="floatingInput"
+								name="username" placeholder="name@example.com"> <label
+								for="floatingInput">Email or Phone</label>
+						</div>
+						<div class="form-floating mb-3">
+							<input type="password" class="form-control" id="floatingPassword"
+								name="password" placeholder="Password"> <label
+								for="floatingPassword">Password</label>
+						</div>
+						<p class="mb-3 text-end">
+							<a th:href="@{/register}"> forgot password ? </a>
+						</p>
+						<div class="form-floating mb-3 text-center">
+							<button class="btn btn-primary w-50 " type="submit">Login</button>
+
+						</div>
+						<p class="mb-3 text-center">
+						Dont have an account	<a th:href="@{/register}">click here! </a>
+						</p>
+					</form>
+
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+</body>
+</html>

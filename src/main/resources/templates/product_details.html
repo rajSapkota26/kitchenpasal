@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${title}">Document</title>
+</head>
+<body>
+	<section class="jumbotron overflow-hidden">
+		<div class="ms-4 me-2">
+			<div class="row mt-2">
+				<div class="col-md-5 ">
+					<div class="row">
+						<div class="col-md-2">
+							<div class="mt-4" th:each="i:${product.imageFiles}">
+								<div class="text-center mt-2 mb-2">
+									<img th:src="@{'/img/' +${i.name}}" class="card-img-top img "
+										width="65" height="85" alt="productImage">
+								</div>
+							</div>
+						</div>
+						<div class="col-md-10">
+							<div class="imagdiscount">
+								<img th:src="@{'/img/' +${product.imageFiles[0].name}}"
+									class="card-img-top img " alt="productImage">
+								<p th:if="${product.mrpPrice>0}"
+									class="text-start text-danger fw-bold top-left border border-danger p-2"
+									th:text="${product.mrpPrice}-${product.price}+' :Discount'">Rs
+									off</p>
+
+							</div>
+						</div>
+					</div>
+					<p class="text-center mt-2">
+						<a href="#" class="btn btn-light mt-1 mybg">Buy Now</a>
+						<button class="btn btn-light mt-1 mybg" th:attr="onclick=|addToCart('${product.id}')|">Add to Cart</button>
+
+					</p>
+					<div class="bg-light  p-2 d-flex">
+						<h3>Share To:</h3>
+						<a href="#" class="text-success ms-2 text-center">
+							<h3>
+								<i class="bi bi-facebook"></i>
+							</h3>
+						</a><a href="#" class="text-success ms-2 text-center">
+							<h3>
+								<i class="bi bi-instagram"></i>
+							</h3>
+						</a><a href="#" class="text-success ms-2 text-center">
+							<h3>
+								<i class="bi bi-whatsapp "></i>
+							</h3>
+						</a>
+
+					</div>
+				</div>
+				<div class="col-md-7 ">
+					<div class="row mt-4">
+						<div class="col-md-10">
+							<h3 th:text="${product.name}">Youwe Glass Top Gas Stove (2
+								Indian Style Burners)-1 Pc</h3>
+						</div>
+						<div class="col-md-2">
+							<h4>
+								<a href="#" class="btn btn-light mt-1 mybg"><i
+									class="bi bi-heart"></i></a>
+							</h4>
+						</div>
+					</div>
+					<h6 class="card-text  fw-bold mt-1">
+						Rs: <span class="text-success" th:text="${product.price}">
+							3500</span> <span class="text-decoration-line-through ms-2 text-danger"
+							th:if="${product.mrpPrice>0}"
+							th:text="${'Rs: '+product.mrpPrice}">3500</span>
+					</h6>
+					<p>
+						<span th:text="${product.brand}" class="p-2 bg-light">
+							Youwe</span>
+					</p>
+					<div>
+						<h4>About Product</h4>
+						<p>This new material is very strong and has the sparkle of
+							crystal. This material is very good resistant against corrosion
+							by the aggressive dish wash detergents and can withstand 2000
+							cycles in a dish washer without the surface being affected.
+							Superior products look as if they are all handmade, but in fact
+							most of them are produced in an ultra modern automatic process.
+							The beautiful stemwares are eye catchers, but also the vases,
+							tumblers and handmade carafes are very beautiful pieces of
+							glassware.</p>
+					</div>
+					<div class="d-flex mb-2">
+						<input type="number" name="quantity" id="pQnty"
+							class="bg-white border-0 " value="1" min="1" max="100">
+
+						<button class="btn btn-light mt-1 mybg ms-4" 
+						th:attr="onclick=|addToCart('${product.id}')|"
+						>Add to Cart</button>
+					</div>
+					<div>
+						<h5>Specifications</h5>
+						<table class="table border border-dark">
+							<thead>
+
+								<tr>
+									<th scope="col">Brand</th>
+									<th th:text="${product.brand}">YW-GT-002A</th>
+								</tr>
+								<tr>
+									<th scope="col">SKU</th>
+									<th th:text="${product.sku}">YW-GT-002A</th>
+								</tr>
+								<tr>
+									<th scope="col">Available Color</th>
+									<th th:text="${product.color}">YW-GT-002A</th>
+								</tr>
+								<tr>
+									<th scope="col">Available Size</th>
+									<th th:text="${product.pPize}">YW-GT-002A</th>
+								</tr>
+								<tr>
+									<th scope="col">Unit</th>
+									<th th:text="${product.unit}">YW-GT-002A</th>
+								</tr>
+								<tr>
+									<th scope="col">More</th>
+									<th th:text="${product.specification}">YW-GT-002A</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+					<p>
+						Have a question?<a href="#" class="text-warning"> Contact Us</a>
+					</p>
+
+
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>

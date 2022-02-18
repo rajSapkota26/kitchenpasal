@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="./base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${title}">Document</title>
+</head>
+<body>
+	<section class="jumbotron overflow-hidden">
+		<!--Main layout-->
+		<main class="container">
+			<h2 class="text-center">Checkout form</h2>
+			<div class="row">
+				<div class="col-md-8 col-lg-8 offset-md-2 offset-lg-2 mb-4">
+					<div class="card">
+						<form class="card-body" th:object="${preOder}"
+							th:action="@{/user/submitOrder}" method="post">
+							<div class="mb-3">
+								<img th:src="@{'/img/' +${preOder.carts.productImage}}"
+									width="100" height="125" class="" alt="productImage">
+								Product <span th:text="${preOder.carts.productName}"></span> ,
+								Quantity <span th:text="${preOder.carts.quantity}"></span>
+								,Price <span
+									th:text="${preOder.carts.price}/${preOder.carts.quantity}"></span>
+								@Each <input th:value="${preOder.carts.quantity}" type="text"
+									class="form-control text-end" name="quantity"
+									id="exampleFormControlInput1" readonly> <input
+									type="text" class="form-control text-end" name="productId"
+									th:value="${preOder.carts.productId}"
+									id="exampleFormControlInput1" readonly>
+
+							</div>
+
+							<div class="mb-3">
+								<label for="exampleFormControlInput1" class="form-label">Total
+									price</label> <input type="text" name="subTotal"
+									class="form-control text-end bg-white "
+									id="exampleFormControlInput1" th:value="${preOder.subTotal}"
+									readonly>
+							</div>
+							<div class="mb-3">
+								<label for="exampleFormControlInput1" class="form-label">Vat(13%)</label>
+								<input type="text" name="vat"
+									class="form-control text-end bg-white "
+									id="exampleFormControlInput1" th:value="${preOder.vat}"
+									readonly>
+							</div>
+							<div class="mb-3">
+								<label for="exampleFormControlInput1" class="form-label">Discount</label>
+								<input type="text" name="discount"
+									class="form-control text-end bg-white "
+									id="exampleFormControlInput1" th:value="${preOder.discount}"
+									readonly>
+							</div>
+							<div class="mb-3">
+								<label for="exampleFormControlInput1" class="form-label">Delivery
+									charge</label> <input type="text" name="deliveryCharge"
+									class="form-control text-end bg-white "
+									id="exampleFormControlInput1"
+									th:value="${preOder.deliveryCharge}" readonly>
+							</div>
+
+
+							<div class="mb-3">
+								<label for="exampleFormControlInput1" class="form-label">Promo
+									code(if you have)</label> <input type="text"
+									class="form-control text-end" id="exampleFormControlInput1"
+									placeholder="your code">
+							</div>
+							<div class="mb-3">
+								<label for="exampleFormControlInput1" class="form-label">Delivery
+									Address(delivery available only in kathmandu valley)</label> <input
+									type="text" class="form-control text-end"
+									id="exampleFormControlInput1" name="deliveryAddress"
+									placeholder="address location and landmark">
+							</div>
+							<div class="mb-3">
+								<label for="exampleFormControlInput1" class="form-label">Contact
+									Number</label> <input type="text" class="form-control text-end"
+									id="exampleFormControlInput1" name="phoneNumber"
+									placeholder="9800000000">
+							</div>
+
+							<div class="mb-3">
+								<label for="exampleFormControlInput1" class="form-label">Total
+									payable Amount</label> <input type="text" name="payableAmount"
+									class="form-control text-end totalMrp"
+									id="exampleFormControlInput1" th:value="${preOder.grandTotal}"
+									readonly>
+							</div>
+							<hr class="mb-2">
+							<div class="mb-2">
+								<h3>Please scan anyone to pay amount and fill follow
+									details</h3>
+							</div>
+							<div class="mb-3">
+								<div class="row">
+									<div class="col-md-4">
+										<p>Via fone-pay</p>
+										<img src="/img/pay.jpg" class="w-100" alt="payment"
+											style="height: 350px;">
+									</div>
+									<div class="col-md-4">
+										<p>Via e-sewa</p>
+										<img src="/img/pay.jpg" class="w-100" alt="payment"
+											style="height: 350px;">
+									</div>
+									<div class="col-md-4">
+										<p>Via Khalti</p>
+										<img src="/img/pay.jpg" class="w-100" alt="payment"
+											style="height: 350px;">
+									</div>
+								</div>
+							</div>
+							<hr class="mb-4">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-floating mb-3">
+										<select class="form-select" name="paymentgateway"
+											aria-label="Default select example">
+											<option selected>Select Payment gateway</option>
+											<option value="esewa">E-Sewa</option>
+											<option value="khalti">Khalti</option>
+											<option value="fonepay">Fone Pay</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-floating mb-3">
+										<input type="text" class="form-control" id="floatingInput"
+											name="transactionCode" placeholder="name"> <label
+											for="floatingInput">transaction code</label>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-floating mb-3">
+										<input type="text" class="form-control" id="floatingInput"
+											name="transferAmount" placeholder="name"> <label
+											for="floatingInput">Amount</label>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-floating mb-3">
+										<input type="text" class="form-control" id="floatingInput"
+											name="transactionId" placeholder="name"> <label
+											for="floatingInput">Amount transfer Id</label>
+									</div>
+								</div>
+							</div>
+							<div class="text-center">
+								<button class="mybtn w-50" type="submit">submit order</button>
+							</div>
+						</form>
+					</div>
+				</div>
+
+
+			</div>
+			<!--Grid row-->
+
+		</main>
+		<!--Main layout-->
+
+
+	</section>
+
+</body>
+</html>

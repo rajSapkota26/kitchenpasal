@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${title}">Document</title>
+</head>
+<body>
+	<section class="jumbotron overflow-hidden">
+		<div class="p-4">
+			<div class="row mb-4">
+				<div class="col-md-2 collapsed p-1 border border-dark">
+					<div class=" text-center">
+						<label for="customRange2" class="form-label">Price filter</label>
+						<input type="range" class="form-range" id="customRange2">
+						<button type="button" class="mybtn w-50 mb-3">Filter</button>
+						<p>Price Rs 350- Rs 3500</p>
+					</div>
+
+					<div class="accordion " id="accordionPanelsStayOpenExample"
+						th:if="${cat1 !=null}">
+						<div class="bg-light mt-4">
+							<h5 class="text-decoration-none  w-100  mt-4  text-dark"
+								>Choose Category</h5>
+							<div class="bg-light mt-2 mb-3">
+								<div class="" th:each="sc:${cat1.subCategories}">
+									<ul class="nav flex-column">
+										<li class="nav-item"><a class="nav-link active text-dark"
+											aria-current="page" th:href="@{'/categorywiseproduct/0/'+${cat1.id}+'/'+${sc.id}}"
+											th:text="${sc.name}">Active</a></li>
+									
+									</ul>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-md-10">
+					<div class="row mybg  p-2">
+						<div class="col-md-10">
+							<h4>
+								<span th:if="${cat1 !=null}" th:text="${cat1.name}"></span> <span>All
+									Product</span>
+							</h4>
+						</div>
+
+						<div class="col-md-2 text-end">
+							<div class="dropdown">
+								<button class="btn btn-white dropdown-toggle" type="button"
+									id="dropdownMenuButton1" data-bs-toggle="dropdown"
+									aria-expanded="false">Sort Items</button>
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+									<li><button class="dropdown-item"
+											th:attr="onclick=|sortItemHighToLow()|">From Low to
+											High price</button></li>
+									<li><button class="dropdown-item"
+											th:attr="onclick=|sortItemLowToHigh()|">From high to
+											low price</button></li>
+									<li><button class="dropdown-item"
+											th:attr="onclick=|sortItemAtoZ()|">From A to Z</button></li>
+									<li><button class="dropdown-item"
+											th:attr="onclick=|sortItemZtoA()|">From Z to A</button></li>
+								</ul>
+							</div>
+
+
+						</div>
+					</div>
+					<div class="container mt-2">
+						<div class="row " th:if="${allProduct !=null}">
+							<div class="col-md-3 mt-2 bg-white mb-3"
+								th:each="p: ${allProduct}">
+								<div class="card text-center">
+									<a th:href="@{/productDetails/{id}(id=${p.id})}"> <img
+										th:src="@{'/img/' +${p.imageFiles[0].name}}"
+										class="card-img-top img " alt="productImage"></a>
+									<div class="card-body">
+										<h5 class="card-title" th:text="${p.name}">Diamond
+											Induction Based Pressure Cooker- 2 L</h5>
+										<h6 class="card-text  fw-bold mt-1">
+											Rs: <span class="text-success" th:text="${p.price}">
+												3500</span> <span
+												class="text-decoration-line-through ms-2 text-danger"
+												th:if="${p.mrpPrice>0}" th:text="${'Rs: '+p.mrpPrice}">3500</span>
+										</h6>
+										<a th:href="@{/user/placeOrder/{id}(id=${p.id})}"
+											class="mybtn">Buy Now</a>
+										<button th:attr="onclick=|addtoCart('${p.id}')|" class="mybtn">Add
+											to Cart</button>
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+						<nav aria-label="Page navigation example">
+
+							<ul class="pagination">
+								<li class="page-item" th:if="${currentPage!=0}"><a
+									class="page-link"
+									th:href="@{'/categorywiseproduct/'+${currentPage-1}+'/'+${catId}+'/'+${subcatId}}"
+									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								</a></li>
+
+								<li th:classappend="${currentPage==i-1?'active':''}"
+									th:each="i:${#numbers.sequence(1,totalPage)}" class="page-item">
+									<a class="page-link"
+									th:href="@{'/categorywiseproduct/'+${i-1}+'/'+${catId}+'/'+${subcatId}}"
+									th:text="${i}">1</a>
+								</li>
+
+
+								<li class="page-item" th:if="${currentPage+1 !=totalPage}">
+									<a class="page-link"
+									th:href="@{'/categorywiseproduct/'+${currentPage+1}+'/'+${catId}+'/'+${subcatId}}"
+									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+								</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+
+	</section>
+
+</body>
+</html>

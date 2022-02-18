@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="admin/adminBase::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container-fluid bg-light">
+			<div class="container border border-dark bg-white">
+				<h3 class="text-center mt-3">
+					Add new Product On SubCategory : <span class="text-success"
+						th:text="${subcatId.name}"></span>
+				</h3>
+				<form class="p-3" method="post" th:object="${product}"
+					th:action="@{/myadmin/updateProduct}" enctype="multipart/form-data">
+					<div class="row">
+						<div class="col-md-4">
+							<input type="text" th:value="${subcatId.id}" hidden="true"
+								name="subcatId">
+							<input type="text" th:value="${product.id}" hidden="true"
+								name="id">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="floatingInput"
+									th:value="${product.name}" name="name" placeholder="name">
+								<label for="floatingInput"> product Name</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="floatingInput"
+									th:value="${product.mrpPrice}" name="mrpPrice"
+									placeholder="name"> <label for="floatingInput">MRP
+									price</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="floatingInput"
+									th:value="${product.price}" name="price" placeholder="name">
+								<label for="floatingInput">Original Price</label>
+							</div>
+						</div>
+					</div>
+					<div class="row ">
+						<div class="col-md-4">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="floatingInput"
+									th:value="${product.sku}" name="sku" placeholder="name">
+								<label for="floatingInput"> product SKU</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="floatingInput"
+									th:value="${product.brand}" name="brand" placeholder="name">
+								<label for="floatingInput">Brand</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="floatingInput"
+									th:value="${product.pPize}" name="pPize" placeholder="name">
+								<label for="floatingInput">Size</label>
+							</div>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-md-4">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="floatingInput"
+									th:value="${product.unit}" name="unit" placeholder="name">
+								<label for="floatingInput">Unit</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-floating">
+								<textarea class="form-control" name="specification"
+									th:text="${product.specification}"
+									placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+								<label for="floatingTextarea">Specification</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-floating">
+								<textarea class="form-control" name="services"
+									th:text="${product.services}"
+									placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+								<label for="floatingTextarea">Services</label>
+							</div>
+						</div>
+					</div>
+					<div class="row ">
+						<div class="col-md-4">
+							<div class="form-floating mb-3">
+								<textarea class="form-control" name="description"
+									th:text="${product.description}"
+									placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+								<label for="floatingTextarea">Description</label>
+							</div>
+						</div>
+						<div class="col-md-4 ">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="floatingInput"
+									th:value="${product.color}"
+									placeholder="Red, Green,Black,Grey,Blue,white" name="color">
+								<label for="floatingInput">Available Colors </label>
+							</div>
+
+						</div>
+						<div class="col-md-4 mb-3">
+							<span class="me-2">Fature product:</span>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="isfeature"
+									th:checked="${product.isfeature==true}" value="true"
+									id="filter-none"> <label class="form-check-label"
+									for="inlineRadio1">yes</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="isfeature"
+									th:checked="${product.isfeature==false}" value="false"
+									id="filter-1"> <label class="form-check-label"
+									for="inlineRadio2">NO</label>
+							</div>
+						</div>
+					</div>
+					<div class="row ">
+						<div class="col-md-4 mb-3">
+							<span class="me-2">Is Available:</span>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="isAvilable"
+									th:checked="${product.isAvilable==true}" value="true"
+									id="filter-none"> <label class="form-check-label"
+									for="inlineRadio1">yes</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="isAvilable"
+									th:checked="${product.isAvilable==false}" value="false"
+									id="filter-1"> <label class="form-check-label"
+									for="inlineRadio2">NO</label>
+							</div>
+						</div>
+						<div class="col-md-4 mb-3">
+							<span class="me-2">Popular product:</span>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="ispopular"
+									th:checked="${product.ispopular==true}" value="true"
+									id="filter-none"> <label class="form-check-label"
+									for="inlineRadio1">yes</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="ispopular"
+									th:checked="${product.ispopular==false}" value="false"
+									id="filter-1"> <label class="form-check-label"
+									for="inlineRadio2">NO</label>
+							</div>
+						</div>
+						<div class="col-md-4 mb-3">
+							<span class="me-2">Offer product:</span>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="isoffer"
+									th:checked="${product.isoffer==true}" value="true"
+									id="filter-none"> <label class="form-check-label"
+									for="inlineRadio1">yes</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="isoffer"
+									th:checked="${product.isoffer==false}" value="false"
+									id="filter-1"> <label class="form-check-label"
+									for="inlineRadio2">NO</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+
+						<div class="col-md-4 col-sm-6" th:each="i:${product.imageFiles}">
+							<div class="text-center">
+								<img th:src="@{'/img/' +${i.name}}" class="card-img-top img "
+									width="90" height="120" alt="productImage">
+							</div>
+						</div>
+					</div>
+					<div class="row ">
+						<div class="col-md-4 mb-3">
+							<div class="form-group">
+								<label for="file">Select Files</label> <br /> <input
+									name="pictures" id="file-input" type="file" multiple
+									class="form-control-file">
+							</div>
+						</div>
+					</div>
+					<div class="row" id="preview"></div>
+					<button type="submit" class="btn btn-light mybg">Submit</button>
+				</form>
+			</div>
+
+		</div>
+	</section>
+</body>
+</html>

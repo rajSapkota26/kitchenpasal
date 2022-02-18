@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="admin/adminBase::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row mt-4">
+				<div class="col-md-6 offset-md-3 mt-4">
+					<h1>Edit Sub Category</h1>
+
+					<div class="bg-white border border-dark mt-4">
+
+						<form class="p-3 mt-4" th:object="${subcat}"
+							th:action="@{/myadmin/updateSubCategory}" method="post">
+							<div class="mb-3">
+								<p>
+									Id : <span th:text="${subcat.id}"></span>
+								</p>
+							</div>
+							<div class="mb-3">
+								<input type="text" class="form-control" id="exampleInputEmail1"
+									hidden="true" th:value="${catId}" name="cId"
+									aria-describedby="emailHelp">
+
+							</div>
+							<div class="mb-3">
+								<div class="form-floating mb-3">
+									<input type="text" class="form-control" id="floatingInput"
+										th:value="${subcat.name}" name="name" placeholder="name">
+									<label for="floatingInput">Name</label>
+								</div>
+								<input type="text" class="form-control" id="exampleInputEmail1"
+									hidden="true" th:value="${subcat.id}" name="id"
+									aria-describedby="emailHelp">
+
+							</div>
+
+
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</section>
+</body>
+</html>

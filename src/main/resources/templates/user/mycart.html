@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="./base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${title}">Document</title>
+</head>
+<body>
+	<section class="jumbotron overflow-hidden">
+
+		<div class="p-4">
+			<div class="row mb-4">
+				<div class="col-md-2  p-2 border border-dark">
+					<div class="mb-3">
+						<a class="mybtn w-100" th:href="@{/user/userdashboard}">Dashboard</a>
+					</div>
+					<div class="mb-3">
+						<a class="mybtn w-100" th:href="@{/user/mycart}">View Carts</a>
+					</div>
+					<div class="mb-3">
+						<a class="mybtn w-100" th:href="@{/user/myorder}">View Orders</a>
+					</div>
+					<div class="mb-3 ">
+						<a class="mybtn w-100" th:href="@{/logout}">Logout</a>
+					</div>
+				</div>
+
+				<div class="col-md-10">
+					<div class="row">
+						<div class="col-md-8 col-lg-8 offset-md-2 offset-lg-2">
+							<div class="mb-3">
+								<table class="table">
+									<thead>
+										<tr>
+											<th scope="col">Item</th>
+											<th scope="col">Product</th>
+											<th scope="col">Sub total</th>
+											<th scope="col">Discount</th>
+											<th scope="col">Quantity</th>
+											<th scope="col">Total</th>
+											<th scope="col" colspan="2">Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="c: ${carts}">
+											<th scope="row"><img
+												th:src="@{'/img/' +${c.productImage}}" width="60"
+												height="75" class="card-img-top img " alt="productImage"></th>
+											<td><h4 th:text="${c.productName}"></h4></td>
+											<td>
+												<h4 th:text="${c.mrp}"></h4>
+											</td>
+											<td><h4 th:text="${c.discount}"></h4></td>
+											<td><h4 th:text="${c.quantity}"></h4></td>
+											<td><h4 th:text="${c.price}"></h4></td>
+											<td><a th:href="@{'/user/createOrder/'+${c.id}}"
+												class="ms-4 mybtn">Check out</a></td>
+											<td>
+
+												<button th:attr="onclick=|deletCart('${c.id}')|">
+													<i class="bi bi-trash-fill"></i>
+												</button>
+											</td>
+										</tr>
+
+									</tbody>
+								</table>
+								<div class="text-center">
+									<a th:href="@{/}" class="mybtn">Continue shopping</a>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+
+
+	</section>
+
+</body>
+</html>

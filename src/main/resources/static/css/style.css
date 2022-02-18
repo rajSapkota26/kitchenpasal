@@ -1,0 +1,101 @@
+.mybg {
+	background: orange;
+	color: white;
+}
+textarea:hover, 
+input:hover, 
+textarea:active, 
+input:active, 
+textarea:focus, 
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+{
+    outline:none !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
+}
+.myselect {
+	background: #186A3B;
+	color: white;
+}
+
+.mybtn {
+	display: inline-block;
+	padding: 5px 10px;
+	font-size: 20px;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	outline: none;
+	color: #fff;
+	background-color: #4CAF50;
+	border: none;
+	border-radius: 12px;
+	box-shadow: 0 2px #999;
+}
+
+.mybtn:hover {
+	background-color: #3e8e41;
+	color: #fff;
+}
+.btn-one {
+  background-color:orange;
+  color: white;
+  padding: 5px 15px;
+    opacity: 0.6;
+  transition: 0.3s;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-one:hover {opacity: 1;color: white;}
+.btn:hover {
+	color: #fff;
+	background-color: #186A3B;
+	border-color: #186A3B;
+}
+
+.img {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+	box-shadow: 5px 6px 6px 2px #e9ecef;
+	transform: scale(1.001);
+	border: 1px solid orange;
+}
+
+.imagdiscount {
+	position: relative;
+	text-align: center;
+	color: white;
+}
+
+.top-left {
+	position: absolute;
+	top: 8px;
+	left: 16px;
+}
+
+.hideCat {
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	width: 80vw;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	margin-right: 10px;
+}
+
+.maincat:hover+.hideCat {
+	display: block;
+}
+.sidebarAdmin{
+	height: 100vh;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="admin/adminBase::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 ">
+					<h1>All Category</h1>
+				</div>
+				<div class="col-md-2">
+					<button href="#" class="btn btn-light mt-1 mybg"
+						data-bs-toggle="modal" data-bs-target="#addModal">Add New
+						Category</button>
+				</div>
+			</div>
+			<div class="bg-light text-center" th:if="${allCat.size>0 }">
+				<table class="table table-bordered border-dark">
+					<thead>
+						<tr>
+							<th scope="col">S n</th>
+							<th scope="col">Name</th>
+							<th scope="col" colspan="3">Actions</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="c: ${allCat}">
+							<th scope="row" th:text="${allCat.indexOf(c)+1}">1</th>
+							<td th:text="${c.name}">Category one</td>
+							<td><a th:href="@{'/myadmin/viewsubcategory/'+${c.id}}"
+								class="btn btn-primary ">View SubCategory</a></td>
+							<td><a th:href="@{'/myadmin/editCategory/'+${c.id}}"
+								class="btn btn-dark  ">Edit</a></td>
+							<td><button class="btn btn-warning"
+									th:attr="onclick=|deletCategory('${c.id}')|">Delete</button></td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+			<div class="bg-light text-center" th:if="!${allCat.size>0 }">
+				<h2>No Category Added</h2>
+			</div>
+
+
+			<!--Add model -->
+			<div class="modal fade" id="addModal" tabindex="-1"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form class="p-3" th:object="${cat}"
+							th:action="@{/myadmin/saveCategory}" method="post">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="floatingInput"
+								
+									name="name"	placeholder="name"> <label
+									for="floatingInput">Name</label>
+							</div>
+							
+
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-bs-dismiss="modal">Close</button>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+</body>
+</html>

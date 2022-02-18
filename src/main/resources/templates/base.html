@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:fragment="layout(content)">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+	<meta name="description" content="This is meta description Sample. We can add up to 158.">
+<!-- own css -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+<title th:text="${title}">base</title>
+
+</head>
+<body class="bg-light  ">
+	<!-- this is nav bar -->
+
+		<div class="container p-3">
+			<div class="row">
+				<div class="col-md-2 text-success col">
+					<h3>KitchenPasal</h3>
+				</div>
+				<div class="col-md-6 col">
+					<form class="d-flex" th:action="@{/searchingItems}"		method="post">
+						<input class="form-control me-2" type="search" name="keyword"
+						required	placeholder="Search" aria-label="Search">
+						<button class="btn text-white mybg " type="submit">Search</button>
+					</form>
+				</div>
+				<div class="col-md-4 col text-end"th:if="${userName ==null}">
+					<a class="mybtn" th:href="@{/login}">Login</a>
+					<a class="mybtn" th:href="@{/register}">Register</a>
+				</div>
+				<div class="col-md-4 col text-end" th:if="${userName !=null}">
+					<a class="mybtn " th:href="@{/user/mycart}" >Cart</a>
+					<a class="mybtn " th:href="@{/user/userdashboard}" >DashBoard</a>
+				</div>
+			
+			</div>
+		</div>
+		<nav class="navbar navbar-expand-lg mybg p-2">
+			<a class="navbar-brand text-white " th:href=@{/}>Home</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon text-white"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto">
+					<li class="nav-item dropdown" th:each="c: ${cat}"><a
+						class="nav-link text-white maincat"
+						th:href="@{'/categorywiseproduct/0/'+${c.id}+'/0'}"
+						th:text="${c.name}">Category</a></li>
+				</ul>
+
+			</div>
+
+		</nav>
+	</div>
+	<!--ending of nav bar  -->
+	<div th:replace="${content}"></div>
+	<!-- Remove the container if you want to extend the Footer to full width. -->
+	<div class="jumbotron ">
+		<!-- Footer -->
+		<footer class="text-center text-lg-start text-white"
+			style="background-color: orange">
+
+			<div class="container p-4 pb-0">
+				<section class="">
+					<div class="row">
+						<div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+							<h5 class="text-uppercase">Location</h5>
+							<p>
+								Kitchen Pasal, Kathmandu, Nepal <br /> Phone: +977-01-4005253;
+								4005254 <br />Email: contact@kitchenpasal.com
+							</p>
+						</div>
+						<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+							<h5 class="text-uppercase">Contact</h5>
+							<p>
+								You can contact us via email at <br /> contact@kitchenpasal.com
+							</p>
+						</div>
+						<!--Grid column-->
+
+						<!--Grid column-->
+						<div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+							<h5 class="text-uppercase">INFORMATION</h5>
+
+							<ul class="list-unstyled mb-0">
+
+								<li><a th:href="@{/about}" class="text-white">About us</a></li>
+								<li><a th:href="@{/contact}" class="text-white">Contact us</a></li>
+								<li><a th:href="@{/policy}" class="text-white">Privacy policy</a></li>
+								<li><a th:href="@{/policy}" class="text-white">Terms and condition</a></li>
+							</ul>
+						</div>
+						<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+							<h5 class="text-uppercase">QUICK LINKS</h5>
+
+							<ul class="list-unstyled mb-0">
+								<li><a href="#!" class="text-white">Link 1</a></li>
+								<li><a href="#!" class="text-white">Link 2</a></li>
+								<li><a href="#!" class="text-white">Link 3</a></li>
+								<li><a href="#!" class="text-white">Link 4</a></li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<hr class="mb-4" />
+				<section class="mb-4 text-center">
+					<!-- Facebook -->
+					<a class="btn btn-outline-light btn-floating m-1" href="#!"
+						role="button"><i class="bi bi-facebook"></i></a>
+					<!-- Twitter -->
+					<a class="btn btn-outline-light btn-floating m-1" href="#!"
+						role="button"><i class="bi bi-twitter"></i></a>
+
+					<!-- Instagram -->
+					<a class="btn btn-outline-light btn-floating m-1" href="#!"
+						role="button"><i class="bi bi-instagram"></i></a>
+
+				</section>
+			</div>
+			<div class="text-center p-3"
+				style="background-color: rgba(0, 0, 0, 0.2)">
+				© 2020 Copyright: <a class="text-white" href="#">sp abinash</a>
+			</div>
+		</footer>
+	
+	<!-- End of .container -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+	<script src="/js/script.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+
+</body>
+</html>
