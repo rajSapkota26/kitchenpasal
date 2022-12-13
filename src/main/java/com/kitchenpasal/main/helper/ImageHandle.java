@@ -16,17 +16,20 @@ import com.kitchenpasal.main.model.ImageFile;
 
 public class ImageHandle {
 
-	public String uploadImage(MultipartFile file) {
-		// getting new image
+	public static ImageFile uploadImage(MultipartFile file) {
+		ImageFile imageFile=new ImageFile();
+		
 
 		try {
 			if (!file.isEmpty()) {
-				String newPic = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+				String id = UUID.randomUUID().toString();
+				String name = UUID.randomUUID().toString() + file.getOriginalFilename();
 				File file2 = new ClassPathResource("static/img").getFile();
-				Path savepath = Paths.get(file2.getAbsolutePath() + File.separator + newPic);
+				Path savepath = Paths.get(file2.getAbsolutePath() + File.separator + name);
 				Files.copy(file.getInputStream(), savepath, StandardCopyOption.REPLACE_EXISTING);
-
-				return newPic;
+				imageFile.setId(id);
+				imageFile.setName(name);
+				return imageFile;
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

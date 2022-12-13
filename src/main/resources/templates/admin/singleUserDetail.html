@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="col-md-10 ">
+					<div class="row ">
+						<h1 class="text-center">Account Information</h1>
+						<div class="col-md-6 offset-md-3">
+							<p>
+								Name : <span th:text="${user.fullName}">Sp abinash</span>
+							</p>
+							<p>
+								Phone : <span th:text="${user.phoneNumber}">9846440376</span>
+							</p>
+							<p>
+								Address: <span th:text="${user.address}">Ktm nepal</span>
+							</p>
+							<p>
+								Email: <span th:text="${user.email}">Spabinash2626@gmail.com</span>
+							</p>
+
+						</div>
+					</div>
+
+				</div>
+</body>
+</html>

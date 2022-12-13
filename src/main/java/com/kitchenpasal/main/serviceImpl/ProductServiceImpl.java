@@ -36,8 +36,20 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public boolean deleteProduct(String category) {
-		productRepo.deleteById(category);
-		return true;
+		Product product = productRepo.findById(category).get();
+		List<ImageFile> imageFiles = product.getImageFiles();
+		try {
+			for (ImageFile img : imageFiles) {
+				File file2 = new ClassPathResource("static/img/" + img.getName()).getFile();
+				file2.delete();
+			}
+			productRepo.deleteById(category);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return false;
 	}
 
 	@Override

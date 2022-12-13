@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kitchenpasal.main.model.ForgotPassword;
 import com.kitchenpasal.main.model.Product;
 import com.kitchenpasal.main.model.User;
 import com.kitchenpasal.main.service.CategoryService;
@@ -24,7 +25,7 @@ import com.kitchenpasal.main.service.UserService;
 public class HomeController {
 	@Autowired
 	private CategoryService catService;
-	
+
 	@Autowired
 	private ProductService productService;
 
@@ -44,7 +45,7 @@ public class HomeController {
 	public String categorywiseproductPage(@PathVariable("page") int page, @PathVariable("id") String id,
 			@PathVariable("subcatId") String sId, Model model) {
 
-		if (sId.equals("0") || sId.length()>7) {
+		if (sId.equals("0") || sId.length() > 7) {
 			model.addAttribute("cat1", catService.getCategoryById(id));
 		}
 		Page<Product> allProduct = productService.getAllProducts(page, id, sId);
@@ -55,9 +56,6 @@ public class HomeController {
 		model.addAttribute("totalPage", allProduct.getTotalPages());
 		return "categorywiseproduct";
 	}
-
-	
-	
 
 	@GetMapping("/productDetails/{id}")
 	public String productDetailsPage(@PathVariable("id") String id, Model model) {
@@ -75,14 +73,23 @@ public class HomeController {
 	public String loginAccountPage(Model model) {
 		return "login";
 	}
+
+	@GetMapping("/forgotpassword")
+	public String forgotPasswordPage(Model model) {
+		model.addAttribute("forgotPassword", new ForgotPassword());
+		return "forgotpassword";
+	}
+
 	@GetMapping("/contact")
 	public String contactus(Model model) {
 		return "contactus";
 	}
+
 	@GetMapping("/about")
 	public String aboutus(Model model) {
 		return "aboutus";
 	}
+
 	@GetMapping("/policy")
 	public String privacypolicy(Model model) {
 		return "privacypolict";
@@ -104,9 +111,10 @@ public class HomeController {
 		return "login";
 
 	}
+
 	@PostMapping("/searchingItems")
 	public String searchProduct(@RequestParam("keyword") String keyword, Model model) {
-		
+
 //		
 		Page<Product> allProduct = productService.getAllProducts(0, "searching", keyword);
 		model.addAttribute("allProduct", allProduct);
@@ -115,7 +123,7 @@ public class HomeController {
 		model.addAttribute("subcatId", keyword);
 		model.addAttribute("totalPage", allProduct.getTotalPages());
 		return "categorywiseproduct";
-		
+
 	}
 
 	// common part for all handler
@@ -123,7 +131,7 @@ public class HomeController {
 	public void addCommonData(Model model, Principal principal) {
 		String userName = null;
 		try {
-			userName=principal.getName();
+			userName = principal.getName();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

@@ -14,9 +14,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.kitchenpasal.main.model.Category;
 import com.kitchenpasal.main.model.Product;
+import com.kitchenpasal.main.model.SliderItems;
 import com.kitchenpasal.main.model.SubCategory;
 import com.kitchenpasal.main.service.CategoryService;
 import com.kitchenpasal.main.service.ProductService;
+import com.kitchenpasal.main.service.SliderItemsService;
 import com.kitchenpasal.main.service.SubCategoryService;
 
 @Controller
@@ -28,6 +30,8 @@ public class AdminSaveController {
 	private SubCategoryService subcatService;
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private SliderItemsService itemservice;
 
 	// save category
 	@PostMapping("/saveCategory")
@@ -99,5 +103,14 @@ public class AdminSaveController {
 		productService.updateProduct(subcatId, product, files);
 
 		return "redirect:/myadmin/viewproduct/" + subcatId;
+	}
+	// save saveSliderImage
+	@PostMapping("/saveSliderImage")
+	public String saveSlider(@RequestParam("sImg") MultipartFile files, @ModelAttribute("si") SliderItems items,
+			HttpSession session) {
+		System.out.println(items.getName());
+		System.out.println(files.getOriginalFilename());
+		itemservice.save(items, files);
+		return "redirect:/myadmin/viewsliderimages";
 	}
 }

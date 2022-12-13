@@ -12,14 +12,14 @@
 				<div class="col-md-10 offset-md-1">
 					<h1 class="text-center">Order details</h1>
 					<div class="row">
-						<div class="col-md-4">User name</div>
-						<div class="col-md-4">Delivery Address</div>
-						<div class="col-md-4">Status</div>
+						<div class="col-md-4">User name <span th:text="${order.username}"></span></div>
+						<div class="col-md-4">Delivery Address<span th:text="${order.deliveryAddress}"></span></div>
+						<div class="col-md-4">Status<span th:text="${order.status}"></span></div>
 					</div>
 					<div class="row">
-						<div class="col-md-4">Order Id</div>
-						<div class="col-md-4">Item</div>
-						<div class="col-md-4">Date</div>
+						<div class="col-md-4">Order Id<span th:text="${order.id}"></span></div>
+						<div class="col-md-4">Item<span th:text="${order.username}"></span></div>
+						<div class="col-md-4">Date<span th:text="${order.username}"></span></div>
 					</div>
 
 					<div class="row">

@@ -10,27 +10,33 @@
 		<div class="p-4">
 			<div class="row mb-4">
 				<div class="col-md-2 collapsed p-1 border border-dark">
-					<div class=" text-center">
-						<label for="customRange2" class="form-label">Price filter</label>
-						<input type="range" class="form-range" id="customRange2">
-						<button type="button" class="mybtn w-50 mb-3">Filter</button>
-						<p>Price Rs 350- Rs 3500</p>
-					</div>
+					<form action="" class="text-center" method="post">
+
+						<div class=" text-center">
+							<label for="customRange2" class="form-label">Price filter</label>
+							<input type="range" class="form-range" id="customRange2"
+								name="pRange">
+							<p>Price Rs 350- Rs 3500</p>
+							<button type="button" class="mybtn w-50 mb-3">Filter</button>
+
+						</div>
+					</form>
 
 					<div class="accordion " id="accordionPanelsStayOpenExample"
 						th:if="${cat1 !=null}">
 						<div class="bg-light mt-4">
-							<h5 class="text-decoration-none  w-100  mt-4  text-dark"
-								>Choose Category</h5>
+							<h5 class="text-decoration-none  w-100  mt-4  text-dark">Choose
+								Category</h5>
 							<div class="bg-light mt-2 mb-3">
 								<div class="" th:each="sc:${cat1.subCategories}">
 									<ul class="nav flex-column">
 										<li class="nav-item"><a class="nav-link active text-dark"
-											aria-current="page" th:href="@{'/categorywiseproduct/0/'+${cat1.id}+'/'+${sc.id}}"
+											aria-current="page"
+											th:href="@{'/categorywiseproduct/0/'+${cat1.id}+'/'+${sc.id}}"
 											th:text="${sc.name}">Active</a></li>
-									
+
 									</ul>
-									
+
 								</div>
 							</div>
 						</div>

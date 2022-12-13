@@ -56,8 +56,8 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public Order getOrderOrderById(String oId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return ordRepo.findById(oId).get();
 	}
 
 	@Override

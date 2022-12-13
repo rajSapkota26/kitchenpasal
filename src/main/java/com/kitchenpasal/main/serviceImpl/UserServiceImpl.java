@@ -19,7 +19,6 @@ public class UserServiceImpl implements UserService {
 	private BCryptPasswordEncoder PasswordEncoder;
 	@Override
 	public User findbyUserName(String username) {
-
 		return userRepo.getUserByUserName(username);
 	}
 	@Override
@@ -39,10 +38,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void saveHr(User user) throws Exception {
 		 String id = UUID.randomUUID().toString();
-		 user.setId(id);
-		user.setRole("ROLE_HR");
-		user.setEnabled(true);
-		user.setPassword(PasswordEncoder.encode(user.getPassword()));
+		  user.setId(id);
+		  user.setRole("ROLE_HR");
+		  user.setEnabled(true);
+		  user.setPassword(PasswordEncoder.encode(user.getPassword()));
 		 userRepo.save(user);
 		
 	}

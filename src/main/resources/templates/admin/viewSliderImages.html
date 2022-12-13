@@ -13,25 +13,62 @@
 					<h1>All Slider item</h1>
 				</div>
 				<div class="col-md-2">
-					<button href="#" class="btn btn-light mt-1 mybg"
-						data-bs-toggle="modal" data-bs-target="#addModal">Add New
-					</button>
+					<button class="btn btn-light mt-1 mybg" data-bs-toggle="modal"
+						data-bs-target="#addModal">Add New</button>
 				</div>
 			</div>
-			
+			<div class="bg-light text-center" th:if="${AllSi.size>0 }">
+				<table class="table table-bordered border-dark">
+					<thead>
+						<tr>
+							<th scope="col">S n</th>
+							<th scope="col">Name</th>
+							<th scope="col">Items</th>
+							<th scope="col" >Actions</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="c: ${AllSi}">
+							<th scope="row" th:text="${AllSi.indexOf(c)+1}">1</th>
+							<td th:text="${c.name}">Category one</td>
+							<td>
+							<div  th:each="i:${c.imageFiles}">
+									<div class="text-center">
+										<img th:src="@{'/img/' +${i.name}}" class=" "
+											width="75" height="75" alt="productImage">
+									</div>
+								</div>
+							</td>
+
+							<td><button class="btn btn-warning"
+									th:attr="onclick=|deletCategory('${c.id}')|">Delete</button></td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+			<div class="bg-light text-center" th:if="!${AllSi.size>0 }">
+				<h2>No Slider image Added</h2>
+			</div>
+
 			<div class="modal fade" id="addModal" tabindex="-1"
 				aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
-						<form class="p-3" 
-							th:action="@{/myadmin/saveSliderImage}" method="post">
+						<form class="p-3" th:action="@{/myadmin/saveSliderImage}"
+							th:object="${si}" method="post" enctype="multipart/form-data">
 							<div class="form-floating mb-3">
 								<input type="text" class="form-control" id="floatingInput"
-								
-									name="name"	placeholder="name"> <label
-									for="floatingInput">Name</label>
+									name="name" placeholder="name"> <label
+									for="floatingInput">Slider Name</label>
 							</div>
-							
+							<div class="form-group mb-3">
+								<label for="file">Select Files</label> <br /> <input
+									name="sImg" id="file-input" type="file"
+									class="form-control-file">
+							</div>
+
 
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</form>

@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kitchenpasal.main.model.Category;
+import com.kitchenpasal.main.model.Order;
 import com.kitchenpasal.main.model.Product;
+import com.kitchenpasal.main.model.SliderItems;
 import com.kitchenpasal.main.model.SubCategory;
 import com.kitchenpasal.main.service.CategoryService;
 import com.kitchenpasal.main.service.OrderService;
 import com.kitchenpasal.main.service.ProductService;
+import com.kitchenpasal.main.service.SliderItemsService;
 import com.kitchenpasal.main.service.SubCategoryService;
 
 @Controller
@@ -70,7 +73,9 @@ public class AdminController {
 
 	// view Slider
 	@GetMapping("/viewsliderimages")
-	public String viewSliderImagesPage() {
+	public String viewSliderImagesPage(Model model) {
+		model.addAttribute("si",new SliderItems());
+		model.addAttribute("AllSi",itemService.getAllSlider());
 		return "admin/viewSliderImages";
 	}
 
@@ -80,9 +85,20 @@ public class AdminController {
 	// view Single order
 	@GetMapping("/singleOrder/{oId}")
 	public String singleorderDetails(@PathVariable("oId")String oId,Model model) {
+		Order orderOrderById = orderService.getOrderOrderById(oId);
+		System.out.println(orderOrderById.toString());
 		model.addAttribute("order",orderService.getOrderOrderById(oId));
 		
 		return "admin/singleorderDetails";
+	}
+	
+	
+	// 
+	@GetMapping("/allUser/{oId}")
+	public String viewUsers(@PathVariable("oId")String oId,Model model) {
+//		model.addAttribute("order",orderService.getOrderOrderById(oId));
+		
+		return "admin/allUser";
 	}
 	
 	
@@ -146,5 +162,7 @@ public class AdminController {
 		productService.deleteProduct(id);
 		return "redirect:/myadmin/viewproduct/" + subcatId;
 	}
+	
+	//show
 
 }
